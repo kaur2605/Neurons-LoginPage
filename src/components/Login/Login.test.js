@@ -1,3 +1,4 @@
+import React from "react"
 import Enzyme from "enzyme"
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17"
 import { shallow, mount } from "enzyme"
@@ -24,5 +25,14 @@ describe("Login Component", () => {
   test("input box should render euth password tag", () => {
     const wrapper = setup()
     expect(wrapper.find('input[name="password"]').exists()).toBe(true)
+  })
+  it("should update state on submit", () => {
+    const changeEmail = jest.fn()
+    const wrapper = mount(<Login onSubmit={changeEmail} />)
+    const handleClick = jest.spyOn(React, "useState")
+    handleClick.mockImplementation((email) => [email, changeEmail])
+
+    wrapper.find("#submit").simulate("click")
+    expect(changeEmail).toBeTruthy()
   })
 })

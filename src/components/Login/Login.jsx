@@ -22,13 +22,15 @@ function Login({ SubmitDetails }) {
       </div>
 
       {!forget && (
-        <form onSubmit={handleSubmit} type="submit">
-          <div className="FormField">
+        <form data-test="form-submit" onSubmit={handleSubmit} id="submit">
+          <div className="Form-field">
             <label htmlFor="Email" className="form-label">
               Email
             </label>
             <br></br>
             <input
+            data-test="input-box"
+            id = "email"
               type="text"
               aria-label="Email"
               name="email"
