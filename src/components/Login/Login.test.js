@@ -1,16 +1,28 @@
-import { render, fireEvent } from '@testing-library/react';
-import Login from './Login';
+import Enzyme from "enzyme"
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17"
+import { shallow, mount } from "enzyme"
+import Login from "./Login"
+import { findByTestAtt } from "../testUtils"
 
-describe('Login', () => {
+Enzyme.configure({ adapter: new Adapter() })
 
- test('inputbox should have labeled correctly', () => {
+const setup = (props = {}) => {
+  return shallow(<Login {...props} />)
+}
+describe("Login Component", () => {
+  test("render without error", () => {
+    const wrapper = setup()
+    const component = findByTestAtt(wrapper, "component-login")
+    expect(component.length).toBe(1)
+  })
 
-const component = render(<Login/>);
-const emailInputnode = component.getByLabelText("Email")
-expect(emailInputnode.getAttribute("name")).toBe("email");
+  test("input box render with email tag", () => {
+    const wrapper = setup()
+    expect(wrapper.find('input[name="email"]').exists()).toBe(true)
+  })
 
- })
-
-
-
-} )
+  test("input box should render euth password tag", () => {
+    const wrapper = setup()
+    expect(wrapper.find('input[name="password"]').exists()).toBe(true)
+  })
+})

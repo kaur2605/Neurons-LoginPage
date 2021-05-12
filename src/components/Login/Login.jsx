@@ -1,29 +1,34 @@
 import React, { useState } from "react"
-import ResetPass from '../ResetPass'
+import ResetPass from "../ResetPass"
 import Validate from "../Validate"
 import useForm from "../useForm"
 
-function Login( {SubmitDetails}) {
-  const { handleChange, handleSubmit, data, errors } = useForm(SubmitDetails,Validate)
-  const[forget, setForget] = useState(false)
+function Login({ SubmitDetails }) {
+  const { handleChange, handleSubmit, data, errors } = useForm(
+    SubmitDetails,
+    Validate
+  )
+  const [forget, setForget] = useState(false)
 
   const forgetPassword = () => {
     setForget(true)
   }
 
   return (
-    <div className="container">
+    <div className="container" data-test="component-login">
       <div className="headline">
         <h1 className="user">User</h1>
         <h1 className="heading-login"> login</h1>
       </div>
- 
+
       {!forget && (
-        <form onSubmit={handleSubmit } >
+        <form onSubmit={handleSubmit} type="submit">
           <div className="FormField">
-           <label htmlFor="Email" className="form-label">Email</label>
-              <br></br>
-              <input
+            <label htmlFor="Email" className="form-label">
+              Email
+            </label>
+            <br></br>
+            <input
               type="text"
               aria-label="Email"
               name="email"
@@ -33,14 +38,13 @@ function Login( {SubmitDetails}) {
               value={data.email}
             />
             {errors.email && <p className="error">{errors.email}</p>}
-           
           </div>
           <div>
             <label className="form-label" htmlFor="password">
               Password
             </label>{" "}
             <input
-            aria-label= "Password"
+              aria-label="Password"
               type="password"
               name="password"
               className="form-group"
@@ -48,7 +52,7 @@ function Login( {SubmitDetails}) {
               onChange={handleChange}
               value={data.password}
             />
-                 {errors.password && <p className="error">{errors.password}</p>}
+            {errors.password && <p className="error">{errors.password}</p>}
           </div>
 
           <div className="extra">
