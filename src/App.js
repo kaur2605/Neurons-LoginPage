@@ -10,9 +10,16 @@ export default function App() {
     setIsSubmitting(true)
   }
 
+  const GoBackToLogin = () => {
+    setIsSubmitting(false)
+  }
   return (
     <div className="App">
-      {!isSubmitting ? <Login SubmitDetails={SubmitDetails} /> : <Logout />}
+      {!isSubmitting ? (
+        <Login SubmitDetails={SubmitDetails} />
+      ) : (
+        <Logout GoBackToLogin={GoBackToLogin} />
+      )}
     </div>
   )
 }

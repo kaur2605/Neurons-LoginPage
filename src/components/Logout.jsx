@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import useForm from "./useForm"
 
-export default function Logout() {
+export default function Logout({GoBackToLogin}) {
 
 
  return (
@@ -11,7 +11,7 @@ export default function Logout() {
    <h4>Nice to see you again, we  hope</h4>
    <h4>You are doing great</h4>
    
-   <button className="logout">Logout</button>
+   <button className="logout" onClick={GoBackToLogin}>Logout</button>
   </div>
  )
 }
